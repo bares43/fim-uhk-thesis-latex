@@ -1,0 +1,91 @@
+\documentclass[a4paper,czech,openright,12pt]{report}
+
+% --- PACKAGES ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fancybox}
+\usepackage{url}
+\usepackage{pdfpages}
+\usepackage{listing}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[czech]{babel}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=black,unicode]{hyperref}
+\usepackage{hypernat}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{sectsty}
+\usepackage{geometry}
+\usepackage{lipsum}
+
+% --- VARIABLES ---
+\def\Title{Název práce}
+\def\TitleEn{Anglický název práce}
+\def\Author{Autor}
+\def\Supervisor{Vedoucí}
+\def\Month{měsíc rok}
+\def\Keywords{Klíčová slova}
+
+% --- SETTINGS ---
+ \geometry{
+   a4paper,
+   total={150mm,247mm},
+   left=30mm,
+   top=25mm,
+}
+
+\renewcommand{\baselinestretch}{1.5}
+
+\hypersetup{
+  pdftitle={\Title},   
+  pdfauthor={\Author},  
+  pdfsubject={},   
+  pdfkeywords={\Keywords}
+}
+
+\renewcommand*{\lstlistingname}{Ukázka kódu}
+\renewcommand*{\lstlistlistingname}{Seznam ukázek kódu}
+
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+
+\lstset{language=[Sharp]C, 
+  captionpos=b,
+  numbers=left,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  escapeinside={(*@}{@*)},
+  commentstyle=\color{greencomments},
+  keywordstyle=\color{bluekeywords},
+  stringstyle=\color{redstrings},
+  basicstyle={\small\ttfamily}
+}
+
+% --- CONTENT ---
+\begin{document}
+
+  \pagenumbering{gobble}	
+
+  \include{components/title}
+  \include{components/declaration}
+  \include{components/thanks}
+  
+  \shipout\null
+  
+  \include{components/annotation}
+  \include{components/contents}
+
+  \pagenumbering{arabic}
+
+  \include{chapters/introduction}
+  \include{chapters/shortcuts}
+  \include{chapters/chapter_01}
+
+  \include{components/bibliography}
+
+  %\includepdf[pages={1}]{zadani.pdf}
+
+\end{document}
